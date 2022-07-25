@@ -28,10 +28,11 @@ void drawLine(int x0, int x1, int y) {
 
 struct EDGE
 {
-	int y_min, y_max, x_with_y_min, m_inv;
+	int y_min, y_max;
+	float x_with_y_min, m_inv;
 
 	EDGE() {}
-	EDGE(int a, int b, int c, int d)
+	EDGE(int a, int b, float c, float d)
 	{
 		y_min = a;
 		y_max = b;
@@ -69,7 +70,7 @@ void scanLine(vector<PT> points)
 		temp.y_min = min(a.y, b.y);
 		temp.y_max = max(a.y, b.y);
 		temp.x_with_y_min = (a.y < b.y) ? a.x : b.x;
-		temp.m_inv = (b.x - a.x) / (b.y - a.y);
+		temp.m_inv = (float)(b.x - a.x) / (float)(b.y - a.y);
 
 		st = min(st, temp.y_min);
 		en = max(en, temp.y_max);
@@ -113,7 +114,7 @@ void scanLine(vector<PT> points)
 int main()
 {
 
-	vector<PT> poly{ {0,0},{0,4},{100,4} };
+	vector<PT> poly{ {362,302},{362,306},{359,304} };
 
 	scanLine(poly);
 
